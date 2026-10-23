@@ -36,6 +36,14 @@ PALETTE = {
     "p": "#efe6cf",  # parchment
     "P": "#cbbd98",  # parchment shade
     "n": "#5a4a3a",  # ink
+    # guild marks
+    "x": "#e50914",  # netflix red
+    "X": "#b1060f",
+    "q": "#0061fe",  # dropbox blue
+    "v": "#76b900",  # nvidia green
+    "j": "#00a1e0",  # salesforce blue
+    "J": "#4fc3ef",
+    "O": "#c74634",  # oracle red
 }
 
 
@@ -97,6 +105,55 @@ HERO = [
 ]
 HERO[6] = "...khkessekhk..."
 
+WIZARD = [
+    ".....k.....tT.",
+    ".....kk....Tt.",
+    "....kDk.....m.",
+    "....kDdk....m.",
+    "...kDddk....m.",
+    "..kkDdddkk..m.",
+    ".kkkkkkkkkk.m.",
+    "...kssssk...m.",
+    "...ksesek...m.",
+    "...kwwwwk...m.",
+    "..kdwwwwdkssm.",
+    "..kddwwdddk.m.",
+    "..kdDddddk..m.",
+    "..kdDddddk..m.",
+    ".kddDdddddk.m.",
+    ".kddDdddddk.m.",
+    ".kddddddddk.m.",
+    "kddddddddddkm.",
+    "kkkkkkkkkkkkm.",
+]
+
+# a sentry at the castle gate, drawn small because it stands far off
+KNIGHT = [
+    "......w",
+    "..kk..g",
+    ".kggk.m",
+    ".kgkk.m",
+    ".kggk.m",
+    "kdrdrkm",
+    "kdrrdsm",
+    "kdrdrkm",
+    ".kddk.m",
+    ".kk.kkm",
+    ".kk.kk.",
+]
+
+# a distant dragon circling the far peaks
+DRAGON = [
+    ".......8........",
+    "........88......",
+    ".........888....",
+    "....8....8888...",
+    "...88...88888...",
+    "88..8888888888.8",
+    ".888888888888888",
+    "....88.....88.8.",
+]
+
 LANTERN = [
     "..k..",
     ".kkk.",
@@ -147,6 +204,7 @@ SCENE_PALETTE.update(
         "z": "#5d5644",  # great tree, far and faint
         "Z": "#7d704c",
         "u": "#4f4a45",  # great tree trunk
+        "8": "#363d7a",  # distant dragon
     }
 )
 
@@ -160,21 +218,21 @@ def scene():
             g[y][x] = ch
 
     # a great golden tree on the horizon, far behind the mountains
-    blobs = [(50, 20, 9, 5), (39, 24, 9, 4), (61, 24, 9, 4), (30, 28, 7, 3),
-             (70, 28, 7, 3), (44, 28, 7, 3), (56, 28, 7, 3)]
-    for y in range(12, 34):
+    blobs = [(50, 28, 9, 5), (39, 32, 9, 4), (61, 32, 9, 4), (30, 36, 7, 3),
+             (70, 36, 7, 3), (44, 36, 7, 3), (56, 36, 7, 3)]
+    for y in range(20, 42):
         for x in range(18, 84):
             for cx, cy, rx, ry in blobs:
                 d = ((x - cx) / rx) ** 2 + ((y - cy) / ry) ** 2
                 if d < 1 and not (d > 0.7 and rnd.random() < 0.3):
                     g[y][x] = "Z" if (y < cy - 1 and rnd.random() < 0.7) else "z"
                     break
-    for (x1, y1) in [(36, 27), (64, 27), (50, 21), (43, 24), (57, 24)]:
+    for (x1, y1) in [(36, 35), (64, 35), (50, 29), (43, 32), (57, 32)]:
         for i in range(13):
             t = i / 12
-            g[round(34 + (y1 - 34) * t)][round(50 + (x1 - 50) * t)] = "u"
-    for y in range(32, 56):
-        spread = (y - 32) // 9
+            g[round(42 + (y1 - 42) * t)][round(50 + (x1 - 50) * t)] = "u"
+    for y in range(40, 60):
+        spread = (y - 40) // 9
         for x in range(49 - spread, 52 + spread):
             g[y][x] = "u"
 
@@ -239,8 +297,11 @@ def scene():
 
     flat = range(118, 138)
     stand = near_top(128)
+    wflat = range(100, 118)
+    wstand = near_top(109)
     for x in range(W):
-        fill_col(x, stand if x in flat else near_top(x), NEAR)
+        top = stand if x in flat else wstand if x in wflat else near_top(x)
+        fill_col(x, top, NEAR)
 
     # pines along the near hill
     for x0 in [12, 26, 34, 70, 82, 160, 172, 181, 266, 280, 292, 306]:
@@ -262,6 +323,9 @@ def scene():
 
     hx = 120
     stamp(HERO, hx, stand - len(HERO))
+    stamp(WIZARD, 102, wstand - len(WIZARD))
+    stamp(KNIGHT, 193, mid_top(196) - len(KNIGHT))
+    stamp(DRAGON, 150, 20)
     stamp(LANTERN, hx + 15, stand - len(HERO) + 9)
 
     lx, ly = hx + 17.5, stand - len(HERO) + 12
@@ -271,7 +335,7 @@ def scene():
         '<stop offset="1" stop-color="#ffd98a" stop-opacity="0"/></radialGradient>'
         '<radialGradient id="tree"><stop offset="0" stop-color="#f4d48e" stop-opacity=".22"/>'
         '<stop offset="1" stop-color="#f4d48e" stop-opacity="0"/></radialGradient></defs>'
-        '<ellipse cx="50" cy="28" rx="44" ry="24" fill="url(#tree)"/>'
+        '<ellipse cx="50" cy="36" rx="44" ry="24" fill="url(#tree)"/>'
     )
     lantern_glow = f'<circle class="glow" cx="{lx}" cy="{ly}" r="18" fill="url(#glow)"/>'
     out = svg(["".join(r) for r in g], SCENE_PALETTE, defs, lantern_glow)
@@ -426,11 +490,70 @@ ICONS = {
 }
 
 
+GUILDS = {
+    "netflix": [
+        "xx....xx",
+        "xxx...xx",
+        "xXx...xx",
+        "xX.x..xx",
+        "xX.xx.Xx",
+        "xX..x.Xx",
+        "xX..xxXx",
+        "xx...xXx",
+        "xx...xxx",
+        "xx....xx",
+    ],
+    "dropbox": [
+        "..q......q..",
+        ".qqq....qqq.",
+        "qqqqq..qqqqq",
+        ".qqq....qqq.",
+        "..q......q..",
+        ".qqq....qqq.",
+        "qqqqq..qqqqq",
+        ".qqq....qqq.",
+        "..q......q..",
+        ".....qq.....",
+        "....qqqq....",
+        ".....qq.....",
+    ],
+    "nvidia": [
+        "vvvvvvvvvv",
+        "vv....vvvv",
+        "v.vvvv.vvv",
+        ".vv..vv.vv",
+        ".vv..vv.vv",
+        "v.vvvv.vvv",
+        "vv....vvvv",
+        "vvvvvvvvvv",
+    ],
+    "salesforce": [
+        "...JJ.......",
+        "..jjjj.jj...",
+        ".jjjjjjjjjj.",
+        "jjjjjjjjjjj.",
+        "jjjjjjjjjjjj",
+        "jjjjjjjjjjjj",
+        ".jjjjjjjjjj.",
+    ],
+    "oracle": [
+        "..OOOOOOOO..",
+        ".OO......OO.",
+        "OO........OO",
+        "OO........OO",
+        ".OO......OO.",
+        "..OOOOOOOO..",
+    ],
+}
+
+
 def main():
     os.makedirs(OUT, exist_ok=True)
     write("scene.svg", scene())
     write("moon.svg", svg(MOON))
     write("hero.svg", svg(HERO))
+    for name, rows in GUILDS.items():
+        write(f"guild-{name}.svg", svg(rows))
     for name, rows in ICONS.items():
         width = max(len(r) for r in rows)
         write(f"{name}.svg", svg([r.ljust(width, ".") for r in rows]))
