@@ -4,8 +4,8 @@ document.addEventListener("DOMContentLoaded", () => {
   scatterStars();
   revealOnScroll();
   console.log(
-    "%cWell met, fellow hacker.%c\nThis site has a strict CSP and no third-party scripts. " +
-      "If you find a bug anyway, see /.well-known/security.txt",
+    "%cI solemnly swear that I am up to no good.%c\nWell met, fellow hacker. This site has a strict CSP and no " +
+      "third-party scripts. If you find a bug anyway, see /.well-known/security.txt. Mischief managed.",
     "font: 700 14px monospace; color: #e3b55b",
     "font: 12px monospace"
   );
