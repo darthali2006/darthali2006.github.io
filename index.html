@@ -1,10 +1,276 @@
-<html>
+<!doctype html>
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Ali's Manifesto</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data:; style-src 'self'; script-src 'self'; font-src 'self'; connect-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <title>Ali Akbar · Application Security Engineer</title>
+  <meta name="description" content="Ali Akbar, Senior Application Security Engineer. Built Netflix's penetration testing program from the ground up. 11+ years across application, product, and offensive security.">
+  <meta name="theme-color" content="#090a1a">
+  <meta name="color-scheme" content="dark light">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Ali Akbar · Application Security Engineer">
+  <meta property="og:description" content="Built Netflix's penetration testing program from the ground up. 11+ years in application, product, and offensive security.">
+  <meta property="og:url" content="https://alismanifesto.com/">
+  <meta property="og:image" content="https://alismanifesto.com/assets/og.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="assets/pixel/shield.svg" type="image/svg+xml">
+  <link rel="preload" href="assets/fonts/inter-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/pixelify-sans-latin-700-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="styles.css">
+  <script src="script.js" defer></script>
 </head>
 <body>
-  <h1>h3ll0 fr13nD</h1>
-  <img src="./hello.JPG" />
+  <a class="skip" href="#main">Skip to content</a>
+
+  <header class="nav">
+    <a class="nav-mark" href="#top" aria-label="Ali Akbar, back to top">
+      <img src="assets/pixel/shield.svg" alt="" width="12" height="12">
+      <span>Ali Akbar</span>
+    </a>
+    <nav aria-label="Sections">
+      <a href="#main-quest">Highlights</a>
+      <a href="#quest-log">Experience</a>
+      <a href="#abilities">Skills</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <section class="hero" id="top">
+    <div class="sky" aria-hidden="true"></div>
+    <img class="moon" src="assets/pixel/moon.svg" alt="" width="22" height="22">
+
+    <div class="hero-inner">
+      <div class="hero-copy">
+        <p class="status reveal"><span class="status-gem" aria-hidden="true"></span>Seeking a new quest · Open to Staff &amp; Senior AppSec roles</p>
+        <p class="eyebrow reveal">Application · Offensive · AI Security</p>
+        <h1 class="reveal">Ali Akbar</h1>
+        <p class="lede reveal">
+          Senior Application Security Engineer. I built Netflix's penetration testing program
+          from the ground up, and I like to fix the whole class of bug, not just the bug.
+        </p>
+        <div class="actions reveal">
+          <a class="btn btn-primary" href="mailto:darthali2006@gmail.com">Send a raven</a>
+          <a class="btn" href="https://www.linkedin.com/in/alakbar" rel="noopener" target="_blank">LinkedIn</a>
+        </div>
+      </div>
+
+      <aside class="sheet reveal" aria-label="Character sheet">
+        <div class="portrait">
+          <img src="assets/portrait.jpg" alt="Ali Akbar smiling on a replica Iron Throne" width="88" height="88">
+          <div>
+            <p class="sheet-title">Character sheet</p>
+            <p class="portrait-name">Ali Akbar</p>
+            <p class="portrait-sub">Holder of a throne of swords, briefly</p>
+          </div>
+        </div>
+        <dl>
+          <div><dt>Class</dt><dd>Application Security Engineer</dd></div>
+          <div><dt>Level</dt><dd>11+ <span class="muted">years in the field</span></dd></div>
+          <div><dt>Guilds</dt><dd>Netflix, Dropbox, Nvidia, Salesforce, Oracle</dd></div>
+          <div><dt>Side quest</dt><dd>Bug bounty hunter</dd></div>
+          <div><dt>Realm</dt><dd>Houston, TX</dd></div>
+          <div><dt>Lore</dt><dd>Tolkien, Elden Ring</dd></div>
+        </dl>
+      </aside>
+    </div>
+
+    <img class="scene" src="assets/pixel/scene.svg" alt="A hooded wanderer with a lantern on a hill at night, a castle and a great golden tree on the horizon">
+  </section>
+
+  <main id="main">
+    <section class="section" id="main-quest" aria-labelledby="main-quest-title">
+      <div class="wrap">
+        <p class="eyebrow reveal">Chapter I · The main quest</p>
+        <h2 id="main-quest-title" class="reveal">Building Netflix's penetration testing program</h2>
+        <div class="quest-feature reveal">
+          <img class="feature-icon" src="assets/pixel/sword.svg" alt="" width="12" height="12">
+          <p>
+            I built and scaled Netflix's staff-augmentation pentest program from nothing, and it became the
+            primary way the company tests itself adversarially across streaming infrastructure and enterprise
+            applications. I co-authored the pentest strategy and risk model that decides what gets tested and when,
+            and I brought the program into the GenAI era with agentic pentesting.
+          </p>
+        </div>
+
+        <ul class="feats" role="list">
+          <li class="feat reveal">
+            <p class="feat-num">1,200+</p>
+            <p>hours of third-party pentesting directed across 20+ engagements</p>
+          </li>
+          <li class="feat reveal">
+            <p class="feat-num">130%</p>
+            <p>more valid bug bounty submissions, plus the program's largest payout to date</p>
+          </li>
+          <li class="feat reveal">
+            <p class="feat-num">Agentic</p>
+            <p>pentesting pairing 0-day hunting tools with Claude security tooling</p>
+          </li>
+          <li class="feat reveal">
+            <p class="feat-num">11+ yrs</p>
+            <p>across application, product, and offensive security</p>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="section" id="quest-log" aria-labelledby="quest-log-title">
+      <div class="wrap">
+        <p class="eyebrow reveal">Chapter II · Quest log</p>
+        <h2 id="quest-log-title" class="reveal">Experience</h2>
+
+        <ol class="quests" role="list">
+          <li class="quest quest-current reveal">
+            <div class="quest-head">
+              <h3>Netflix</h3>
+              <p class="quest-role">Senior Application Security Engineer</p>
+              <p class="quest-meta">Sep 2022 to Oct 2026 · Remote</p>
+            </div>
+            <ul>
+              <li>Built the staff-augmentation penetration testing program from the ground up; it became Netflix's primary mechanism for adversarial testing.</li>
+              <li>Directed 1,200+ hours across 20+ third-party engagements, drove remediation of critical vulnerabilities, and shipped paved-road fixes for systemic issues instead of one-off patches.</li>
+              <li>Co-authored the company-wide penetration testing strategy and the risk model used to prioritize security testing investment.</li>
+              <li>Set up agentic pentesting, combining 0-day hunting tools with Claude security tooling to augment manual testing.</li>
+              <li>Threat-modeled critical systems including the autonomous coding agents platform, Studio Orchestrator, and an internal GenAI chatbot, delivering mitigations such as agentic identity before go-live.</li>
+              <li>Led the public bug bounty program. Partnered with NahamSec to open it to his 70K-hacker community, driving a 130% increase in valid submissions. Automated triage with agentic flows.</li>
+              <li>Founding engineer on the Application Security Reviews and Assessments team; mentored and onboarded engineers and set team direction.</li>
+            </ul>
+          </li>
+          <li class="quest reveal">
+            <div class="quest-head">
+              <h3>Dropbox</h3>
+              <p class="quest-role">Application Security Engineer</p>
+              <p class="quest-meta">Aug 2019 to Aug 2022 · San Francisco, CA</p>
+            </div>
+            <ul>
+              <li>Engineered the product's OAuth 2.0 authentication framework and hardened it through code analysis, threat modeling, and penetration testing.</li>
+              <li>Ran static and dynamic testing of Apex and Visualforce code; triaged every bug bounty report and drove timely fixes.</li>
+              <li>Built a Python tool that monitors AWS for threats and logs unusual behavior for triage.</li>
+            </ul>
+          </li>
+          <li class="quest reveal">
+            <div class="quest-head">
+              <h3>Nvidia</h3>
+              <p class="quest-role">GPU Cloud Security Intern</p>
+              <p class="quest-meta">Jan 2019 to Apr 2019 · Santa Clara, CA</p>
+            </div>
+            <ul>
+              <li>Built a public key infrastructure for Kubernetes clients using X.509 client certificates and HashiCorp Vault, so clients could authenticate to GPU Cloud.</li>
+            </ul>
+          </li>
+          <li class="quest reveal">
+            <div class="quest-head">
+              <h3>Salesforce</h3>
+              <p class="quest-role">Product Security Intern</p>
+              <p class="quest-meta">May 2018 to Aug 2018 · San Francisco, CA</p>
+            </div>
+            <ul>
+              <li>Built a scanner for third-party products that clones the repo, resolves Maven or npm dependencies, and scans with Nexus IQ; ran it on internal source.</li>
+              <li>Pentested AppExchange applications for XSS, CSRF, SQL injection, and the OWASP Top 10.</li>
+            </ul>
+          </li>
+          <li class="quest reveal">
+            <div class="quest-head">
+              <h3>Oracle</h3>
+              <p class="quest-role">Associate Software Engineer</p>
+              <p class="quest-meta">Jun 2015 to Jun 2017 · Bangalore, India</p>
+            </div>
+            <ul>
+              <li>Developed the ZFS file system and Solaris kernel code to cut mirroring time; wrote DTrace scripts to diagnose kernel behavior and measure performance.</li>
+              <li>Resolved escalated customer issues including pool corruption and data outages.</li>
+            </ul>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="section" id="abilities" aria-labelledby="abilities-title">
+      <div class="wrap">
+        <p class="eyebrow reveal">Chapter III · Abilities</p>
+        <h2 id="abilities-title" class="reveal">Skills</h2>
+        <ul class="abilities" role="list">
+          <li class="ability reveal">
+            <span class="slot"><img src="assets/pixel/sword.svg" alt="" width="12" height="12"></span>
+            <div><h3>Penetration testing</h3><p>Program design, scoping, and hands-on offensive testing.</p></div>
+          </li>
+          <li class="ability reveal">
+            <span class="slot"><img src="assets/pixel/shield.svg" alt="" width="12" height="12"></span>
+            <div><h3>Application security</h3><p>Security reviews and architecture guidance that close risk gaps before launch.</p></div>
+          </li>
+          <li class="ability reveal">
+            <span class="slot"><img src="assets/pixel/map.svg" alt="" width="12" height="12"></span>
+            <div><h3>Threat modeling</h3><p>Risk models that decide what to test first and where to invest.</p></div>
+          </li>
+          <li class="ability reveal">
+            <span class="slot"><img src="assets/pixel/orb.svg" alt="" width="12" height="12"></span>
+            <div><h3>Agentic and AI security</h3><p>Securing autonomous coding agents and using agents to find bugs.</p></div>
+          </li>
+          <li class="ability reveal">
+            <span class="slot"><img src="assets/pixel/coin.svg" alt="" width="12" height="12"></span>
+            <div><h3>Bug bounty</h3><p>Running a public program, and hunting on the other side of it.</p></div>
+          </li>
+          <li class="ability reveal">
+            <span class="slot"><img src="assets/pixel/key.svg" alt="" width="12" height="12"></span>
+            <div><h3>Cryptography and auth</h3><p>OAuth 2.0, PKI, X.509, and secrets management.</p></div>
+          </li>
+        </ul>
+
+        <h3 class="inventory-title reveal">Inventory</h3>
+        <ul class="inventory reveal" role="list">
+          <li>Claude Code</li><li>Claude Security</li><li>AWS</li><li>Kubernetes</li><li>HashiCorp Vault</li>
+          <li>Python</li><li>Java</li><li>C</li><li>C++</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="section" id="training" aria-labelledby="training-title">
+      <div class="wrap">
+        <p class="eyebrow reveal">Chapter IV · Training grounds</p>
+        <h2 id="training-title" class="reveal">Education</h2>
+        <ul class="schools" role="list">
+          <li class="school reveal">
+            <span class="slot"><img src="assets/pixel/book.svg" alt="" width="12" height="11"></span>
+            <div>
+              <h3>University of Florida</h3>
+              <p>M.S., Computer and Information Science Engineering, with a Graduate Certificate in Information Security</p>
+              <p class="quest-meta">2017 to 2019</p>
+            </div>
+          </li>
+          <li class="school reveal">
+            <span class="slot"><img src="assets/pixel/book.svg" alt="" width="12" height="11"></span>
+            <div>
+              <h3>Manipal Institute of Technology</h3>
+              <p>B.Tech, Computer Science and Engineering</p>
+              <p class="quest-meta">2011 to 2015</p>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="section contact" id="contact" aria-labelledby="contact-title">
+      <div class="wrap">
+        <div class="contact-card reveal">
+          <img class="contact-icon" src="assets/pixel/letter.svg" alt="" width="12" height="9">
+          <p class="eyebrow">Epilogue · The next quest</p>
+          <h2 id="contact-title">Seeking a new quest</h2>
+          <p>
+            I'm looking for a Staff or Senior Application Security role where I can set the strategy
+            and build it myself. If that sounds like your team, send a raven.
+          </p>
+          <div class="actions">
+            <a class="btn btn-primary" href="mailto:darthali2006@gmail.com">darthali2006@gmail.com</a>
+            <a class="btn" href="https://www.linkedin.com/in/alakbar" rel="noopener" target="_blank">LinkedIn</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>© 2026 Ali Akbar · Houston, TX</p>
+    <p>Found a bug? See <a href="/.well-known/security.txt">security.txt</a></p>
+  </footer>
 </body>
 </html>
