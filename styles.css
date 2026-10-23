@@ -817,17 +817,16 @@ h3 {
 /* ------------------------------------------------------------ guild marks */
 
 .guilds {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 6px 14px;
+  display: grid;
+  gap: 6px;
   margin: 0;
   padding: 0;
   list-style: none;
 }
 .guilds li {
-  display: inline-flex;
+  display: flex;
   align-items: center;
-  gap: 6px;
+  gap: 8px;
 }
 .guilds img {
   width: auto;
