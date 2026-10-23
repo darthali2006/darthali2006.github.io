@@ -829,8 +829,9 @@ h3 {
   gap: 8px;
 }
 .guilds img {
-  width: auto;
+  width: 16px;
   height: 12px;
+  object-fit: contain;
 }
 
 .quest-head h3 {
