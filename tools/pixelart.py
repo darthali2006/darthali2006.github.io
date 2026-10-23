@@ -17,8 +17,8 @@ PALETTE = {
     "H": "#46589a",  # hood light
     "s": "#c48d6a",  # skin
     "e": "#141229",  # eyes
-    "c": "#4a2f5e",  # cloak
-    "C": "#5e3d75",  # cloak light
+    "c": "#1f4d38",  # cloak, Slytherin green
+    "C": "#2b664b",  # cloak light
     "b": "#c9a24a",  # belt / gold
     "m": "#6b4c35",  # leather
     "M": "#82603f",  # leather light
@@ -44,6 +44,8 @@ PALETTE = {
     "j": "#00a1e0",  # salesforce blue
     "J": "#4fc3ef",
     "O": "#c74634",  # oracle red
+    "G": "#2a8a5a",  # serpent green
+    "L": "#c3c9d4",  # silver
 }
 
 
@@ -154,6 +156,16 @@ DRAGON = [
     "....88.....88.8.",
 ]
 
+# an owl keeping watch from the left tower
+OWL = [
+    "k...k",
+    "kkkkk",
+    "kokok",
+    "kkkkk",
+    ".kkk.",
+    ".k.k.",
+]
+
 LANTERN = [
     "..k..",
     ".kkk.",
@@ -200,7 +212,8 @@ SCENE_PALETTE.update(
         "4": "#0b0c20",  # castle
         "5": "#151838",  # castle light side
         "o": "#f0c36a",  # lit window
-        "f": "#a8463f",  # flag
+        "f": "#2a8a5a",  # flag, green and silver
+        "F": "#c3c9d4",
         "z": "#5d5644",  # great tree, far and faint
         "Z": "#7d704c",
         "u": "#4f4a45",  # great tree trunk
@@ -278,7 +291,8 @@ def scene():
             g[27 - i][x] = "4"
     for y in range(17, 22):           # flagpole
         g[y][223] = "4"
-    g[17][224] = g[17][225] = g[18][224] = "f"
+    g[17][224] = g[17][225] = "f"
+    g[18][224] = g[18][225] = "F"
     for x in (204, 237, 220):         # lit sides
         for y in range(39 if x == 204 else 37 if x == 237 else 29, H):
             if g[y][x] == "4":
@@ -326,6 +340,7 @@ def scene():
     stamp(WIZARD, 102, wstand - len(WIZARD))
     stamp(KNIGHT, 193, mid_top(196) - len(KNIGHT))
     stamp(DRAGON, 150, 20)
+    stamp(OWL, 204, 37 - len(OWL))
     stamp(LANTERN, hx + 15, stand - len(HERO) + 9)
 
     lx, ly = hx + 17.5, stand - len(HERO) + 12
@@ -547,11 +562,25 @@ GUILDS = {
 }
 
 
+SERPENT = [
+    "..GGGGL.",
+    ".GG...GG",
+    ".GG.....",
+    "..GGG...",
+    "....GG..",
+    ".....GG.",
+    "G....GG.",
+    "GG..GG..",
+    ".GGGG...",
+]
+
+
 def main():
     os.makedirs(OUT, exist_ok=True)
     write("scene.svg", scene())
     write("moon.svg", svg(MOON))
     write("hero.svg", svg(HERO))
+    write("serpent.svg", svg(SERPENT))
     for name, rows in GUILDS.items():
         write(f"guild-{name}.svg", svg(rows))
     for name, rows in ICONS.items():

@@ -818,7 +818,8 @@ h3 {
 
 .guilds {
   display: grid;
-  gap: 6px;
+  grid-template-columns: repeat(2, max-content);
+  gap: 6px 16px;
   margin: 0;
   padding: 0;
   list-style: none;
@@ -855,4 +856,22 @@ h3 {
 .guild-mark img {
   width: auto;
   height: 16px;
+}
+
+/* ------------------------------------------------------------ house */
+
+.house {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 4px 8px;
+}
+.house img {
+  width: 16px;
+  height: 14px;
+  object-fit: contain;
+}
+
+.motto {
+  font-style: italic;
 }
