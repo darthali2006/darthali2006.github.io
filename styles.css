@@ -268,6 +268,7 @@ button {
     grid-template-columns: 1fr 360px;
     align-items: center;
     padding-top: calc(80px + 6vh);
+    padding-bottom: calc(var(--scene-h) * 0.8);
   }
 }
 
@@ -314,7 +315,7 @@ h1 {
 }
 
 .lede {
-  max-width: 34rem;
+  max-width: 38rem;
   margin-top: 20px;
   font-size: clamp(1.0625rem, 1.6vw, 1.1875rem);
   line-height: 1.6;
@@ -547,7 +548,7 @@ h3 {
   content: "";
   position: absolute;
   left: -28px;
-  top: 6px;
+  top: 10px;
   width: 12px;
   height: 12px;
   background: var(--bg);
@@ -811,4 +812,47 @@ h3 {
     grid-template-columns: 1fr;
     gap: 14px;
   }
+}
+
+/* ------------------------------------------------------------ guild marks */
+
+.guilds {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 14px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.guilds li {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.guilds img {
+  width: auto;
+  height: 12px;
+}
+
+.quest-head h3 {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.guild-mark {
+  display: grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  flex: none;
+  background: #1b1f45;
+  box-shadow:
+    0 -2px 0 0 #2b3064,
+    0 2px 0 0 #2b3064,
+    -2px 0 0 0 #2b3064,
+    2px 0 0 0 #2b3064;
+}
+.guild-mark img {
+  width: auto;
+  height: 16px;
 }
