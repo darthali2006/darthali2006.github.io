@@ -357,6 +357,239 @@ def scene():
     return out.replace('width="320" height="96" ', 'preserveAspectRatio="xMidYMax slice" ')
 
 
+# ---------------------------------------------------------------- storybook scene
+# A winter dusk where three realms meet: a lamppost and a faun in a snowy wood,
+# a round green door in a hillside, misty peaks, and a many-spired castle above
+# a lake, lit by floating candles.
+
+FAUN = [
+    "...++++++...",
+    ".++++++++++.",
+    "++++++++++++",
+    "........k...",
+    "..nnnn..k...",
+    ".nssssn.k...",
+    "..sese..k...",
+    "..ssss..k...",
+    ".rrrrrr.k...",
+    ".rssssrsk...",
+    ".ssssss.k...",
+    ".mmmmmm.k...",
+    ".mmmmmm.....",
+    ".mm..mm.....",
+    ".mm..mm.....",
+    "..m...m.....",
+    ".kk..kk.....",
+]
+
+LAMPPOST = [
+    ".###.",
+    "#yYy#",
+    "#YYY#",
+    "#yYy#",
+    ".###.",
+    "..#..",
+    "..#..",
+    "..#..",
+    "..#..",
+    "..#..",
+    "..#..",
+    "..#..",
+    "..#..",
+    "..#..",
+    "..#..",
+    "..#..",
+    "..#..",
+    "..#..",
+    ".###.",
+    "#####",
+]
+
+CANDLE = ["y", "Y", "p", "p", "P"]
+
+STORY_PALETTE = dict(PALETTE)
+STORY_PALETTE.update(
+    {
+        "1": "#3b5079",  # far peaks
+        "!": "#d9e3f0",  # snow caps
+        "2": "#20324f",  # forest
+        "@": "#8fa6c2",  # snow on boughs
+        "3": "#1a2843",  # cliff
+        "4": "#121b31",  # castle
+        "5": "#1d2a47",  # castle light side
+        "o": "#f0c36a",  # lit window
+        "6": "#28456c",  # lake
+        "~": "#e9c27a",  # lake glints
+        "7": "#7d94b3",  # far snow
+        "8": "#a9bdd6",  # snow
+        "9": "#7f97b8",  # snow shade
+        "#": "#232637",  # lamppost iron
+        "%": "#3f7d4a",  # round door
+        "&": "#7a5a3a",  # door frame
+        "+": "#262a3c",  # umbrella
+    }
+)
+
+
+def scene_storybook():
+    rnd = random.Random(11)
+    g = [[SKY] * W for _ in range(H)]
+
+    def fill_col(x, top, ch):
+        for y in range(max(0, top), H):
+            g[y][x] = ch
+
+    def stamp(sprite, x0, y0):
+        for dy, row in enumerate(sprite):
+            for dx, ch in enumerate(row):
+                if ch != "." and 0 <= x0 + dx < W and 0 <= y0 + dy < H:
+                    g[y0 + dy][x0 + dx] = ch
+
+    # misty peaks with snow caps
+    peaks = [(0, 50), (24, 34), (46, 48), (70, 28), (96, 46), (124, 36), (150, 50),
+             (176, 32), (204, 46), (236, 30), (268, 46), (296, 36), (320, 48)]
+    for x in range(W):
+        for (x0, y0), (x1, y1) in zip(peaks, peaks[1:]):
+            if x0 <= x <= x1:
+                t = (x - x0) / (x1 - x0)
+                top = round(y0 + (y1 - y0) * t)
+                fill_col(x, top, "1")
+                peak_y = min(y0, y1)
+                for y in range(top, min(top + 3, H)):
+                    if y < peak_y + 6:
+                        g[y][x] = "!"
+                break
+
+    # lake across the right half, with candlelight glinting on it
+    for y in range(60, H):
+        for x in range(162, W):
+            g[y][x] = "6"
+    for _ in range(26):
+        x, y = rnd.randint(166, 290), rnd.randint(62, 86)
+        for dx in range(rnd.randint(1, 3)):
+            if x + dx < W:
+                g[y][x + dx] = "~"
+
+    # cliff rising from the lake
+    def cliff_top(x):
+        return round(56 - 8 * math.exp(-((x - 228) / 26) ** 2))
+
+    for x in range(188, 272):
+        top = cliff_top(x)
+        if x < 196 or x > 262:
+            top += abs(x - 229) // 6 - 4
+        fill_col(x, max(top, 40), "3")
+
+    # castle of many spires
+    def tower(x0, x1, top, roof=True):
+        for x in range(x0, x1):
+            fill_col(x, top, "4")
+        if roof:
+            w = x1 - x0
+            for i in range(w // 2 + 2):
+                for x in range(x0 - 1 + i, x1 + 1 - i):
+                    if 0 <= top - 1 - i * 2 < H:
+                        g[top - 1 - i * 2][x] = "4"
+                        if top - 2 - i * 2 >= 0:
+                            g[top - 2 - i * 2][x] = "4"
+
+    tower(204, 252, 44, roof=False)       # great hall
+    tower(200, 205, 34)
+    tower(211, 216, 30)
+    tower(222, 228, 22)                   # tallest spire
+    tower(234, 239, 28)
+    tower(245, 250, 32)
+    tower(255, 259, 40)
+    for x in (201, 212, 223, 235, 246):
+        for y in range(H):
+            if g[y][x] == "4":
+                g[y][x] = "5"
+    for (x, y) in [(202, 38), (213, 34), (224, 27), (225, 33), (236, 32), (247, 36),
+                   (208, 47), (211, 47), (217, 47), (230, 47), (240, 47), (243, 47), (256, 43)]:
+        g[y][x] = "o"
+        g[y + 1][x] = "o"
+
+    # snowy wood behind the near hill
+    for x0 in [6, 18, 30, 52, 64, 82, 96, 112, 136, 300, 312]:
+        base = (70 if x0 < 150 else 68) + rnd.randint(-2, 2)
+        hgt = rnd.randint(12, 18)
+        for i in range(hgt):
+            half = (i * 4) // hgt + (1 if i % 3 == 2 else 0)
+            y = base - hgt + i
+            for x in range(x0 - half, x0 + half + 1):
+                if 0 <= x < W and 0 <= y < H:
+                    g[y][x] = "@" if (i % 3 == 2 and x <= x0) else "2"
+
+    # near snowfield
+    def near_top(x):
+        top = round(80 - 4 * math.sin(x / 41 + 0.6) - 2 * math.sin(x / 13))
+        if x >= 162:                       # the shore drops away to the lake
+            top = max(top, round(80 + min(x - 162, 8)))
+        if x >= 278:                       # far bank where the last pines stand
+            top = min(top, max(70, round(88 - (x - 278) * 0.9)))
+        return top
+
+    flat = range(100, 162)
+    stand = near_top(120)
+    mound = lambda x: round(stand - 11 * math.sqrt(max(0, 1 - ((x - 58) / 24) ** 2)))
+    for x in range(W):
+        top = stand if x in flat else near_top(x)
+        if 34 <= x <= 82:
+            top = min(top, mound(x))
+        fill_col(x, top, "9")
+        g[top][x] = "8"
+        if top + 1 < H:
+            g[top + 1][x] = "8"
+
+    # round door in the hillside
+    cx, cy, r = 58, stand - 4, 5
+    for y in range(cy - r - 1, stand + 1):
+        for x in range(cx - r - 1, cx + r + 2):
+            d = math.hypot(x - cx, (y - cy) * 1.0)
+            if y > cy and abs(x - cx) <= r:
+                g[y][x] = "%" if abs(x - cx) < r else "&"
+            elif d <= r - 0.5:
+                g[y][x] = "%"
+            elif d <= r + 0.7:
+                g[y][x] = "&"
+    g[cy + 1][cx] = "a"                        # brass knob
+    for (x, y) in [(47, cy), (48, cy), (47, cy + 1), (48, cy + 1), (68, cy), (69, cy), (68, cy + 1), (69, cy + 1)]:
+        g[y][x] = "o"                          # round windows either side
+
+    # lamppost, faun and the wanderer
+    stamp(LAMPPOST, 156, stand - len(LAMPPOST))
+    stamp(FAUN, 142, stand - len(FAUN))
+    hx = 120
+    stamp(HERO, hx, stand - len(HERO))
+    stamp(LANTERN, hx + 15, stand - len(HERO) + 9)
+
+    # floating candles
+    candles = [(20, 30), (112, 34), (150, 24), (166, 30), (182, 22), (290, 26), (304, 20), (314, 32)]
+    for (x, y) in candles:
+        stamp(CANDLE, x, y)
+
+    glows = "".join(
+        f'<circle cx="{x + 0.5}" cy="{y + 1}" r="5" fill="url(#cglow)"/>' for (x, y) in candles
+    )
+    defs = (
+        '<defs><radialGradient id="glow"><stop offset="0" stop-color="#ffd98a" stop-opacity=".45"/>'
+        '<stop offset=".45" stop-color="#ffd98a" stop-opacity=".12"/>'
+        '<stop offset="1" stop-color="#ffd98a" stop-opacity="0"/></radialGradient>'
+        '<radialGradient id="cglow"><stop offset="0" stop-color="#ffd98a" stop-opacity=".5"/>'
+        '<stop offset="1" stop-color="#ffd98a" stop-opacity="0"/></radialGradient>'
+        '<linearGradient id="fade" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#0e1029" stop-opacity="0"/>'
+        '<stop offset="1" stop-color="#0e1029" stop-opacity=".85"/></linearGradient></defs>'
+    )
+    after = (
+        glows
+        + f'<circle cx="158.5" cy="{stand - len(LAMPPOST) + 2}" r="16" fill="url(#glow)"/>'
+        + f'<circle cx="{hx + 17.5}" cy="{stand - len(HERO) + 12}" r="14" fill="url(#glow)"/>'
+        + f'<rect x="0" y="{stand + 2}" width="{W}" height="{H - stand - 2}" fill="url(#fade)"/>'
+    )
+    out = svg(["".join(r) for r in g], STORY_PALETTE, defs, after)
+    return out.replace(f'width="{W}" height="{H}" ', 'preserveAspectRatio="xMidYMax slice" ')
+
+
 # ---------------------------------------------------------------- icons
 
 ICONS = {
@@ -389,6 +622,17 @@ ICONS = {
         "..kmk.kk....",
         ".kak........",
         ".kk.........",
+    ],
+    # realm toggle
+    "ring": [
+        "..kkkk..",
+        ".kAAAak.",
+        "kAk..kak",
+        "kAk..kak",
+        "kak..kak",
+        "kak..kak",
+        ".kaaaak.",
+        "..kkkk..",
     ],
     # threat modeling
     "map": [
@@ -578,6 +822,7 @@ SERPENT = [
 def main():
     os.makedirs(OUT, exist_ok=True)
     write("scene.svg", scene())
+    write("scene-storybook.svg", scene_storybook())
     write("moon.svg", svg(MOON))
     write("hero.svg", svg(HERO))
     write("serpent.svg", svg(SERPENT))

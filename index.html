@@ -18,8 +18,9 @@
   <link rel="icon" href="assets/pixel/shield.svg" type="image/svg+xml">
   <link rel="preload" href="assets/fonts/inter-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="assets/fonts/pixelify-sans-latin-700-normal.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="styles.css?v=5">
-  <script src="script.js?v=5" defer></script>
+  <script src="assets/realm.js?v=6"></script>
+  <link rel="stylesheet" href="styles.css?v=6">
+  <script src="script.js?v=6" defer></script>
 </head>
 <body>
   <a class="skip" href="#main">Skip to content</a>
@@ -34,6 +35,10 @@
       <a href="#quest-log">Experience</a>
       <a href="#abilities">Skills</a>
       <a href="#contact">Contact</a>
+      <button class="realm-toggle" type="button" aria-pressed="false" aria-label="Switch to the Storybook theme">
+        <img src="assets/pixel/ring.svg" alt="" width="8" height="8">
+        <span class="realm-label">Storybook</span>
+      </button>
     </nav>
   </header>
 
@@ -72,13 +77,14 @@
           <div><dt>Level</dt><dd>11+ <span class="muted">years in the field</span></dd></div>
           <div><dt>Guilds</dt><dd><ul class="guilds" role="list"><li><img src="assets/pixel/guild-netflix.svg" alt="" width="8" height="10">Netflix</li><li><img src="assets/pixel/guild-dropbox.svg" alt="" width="12" height="12">Dropbox</li><li><img src="assets/pixel/guild-nvidia.svg" alt="" width="10" height="8">Nvidia</li><li><img src="assets/pixel/guild-salesforce.svg" alt="" width="12" height="7">Salesforce</li><li><img src="assets/pixel/guild-oracle.svg" alt="" width="12" height="6">Oracle</li></ul></dd></div>
           <div><dt>Side quest</dt><dd>Bug bounty hunter</dd></div>
-          <div><dt>House</dt><dd class="house"><img src="assets/pixel/serpent.svg" alt="" width="8" height="9">Slytherin <span class="muted">· resourceful</span></dd></div>
+          <div><dt>House</dt><dd class="house"><img src="assets/pixel/serpent.svg" alt="" width="8" height="9">Slytherin</dd></div>
           <div><dt>Realm</dt><dd>Houston, TX</dd></div>
         </dl>
       </aside>
     </div>
 
-    <img class="scene" src="assets/pixel/scene.svg" alt="A hooded wanderer in a green cloak with a lantern and a wizard on a hill at night, a sentry and an owl by a castle flying green and silver, a dragon and a great golden tree on the horizon">
+    <img class="scene scene-night" src="assets/pixel/scene.svg" alt="A hooded wanderer in a green cloak with a lantern and a wizard on a hill at night, a sentry and an owl by a castle flying green and silver, a dragon and a great golden tree on the horizon">
+    <img class="scene scene-storybook" src="assets/pixel/scene-storybook.svg" aria-hidden="true" alt="A snowy dusk: a lamppost and a faun with an umbrella in a winter wood, a round green door in a hillside, misty peaks, and a many-spired castle above a lake under floating candles">
   </section>
 
   <main id="main">

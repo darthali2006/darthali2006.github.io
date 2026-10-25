@@ -875,3 +875,96 @@ h3 {
 .motto {
   font-style: italic;
 }
+
+/* ------------------------------------------------------------ realms */
+
+.realm-toggle {
+  --frame: #3a4080;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-left: 8px;
+  padding: 6px 12px;
+  border: 0;
+  background: rgba(255, 255, 255, 0.05);
+  color: #ece6d6;
+  font: 500 0.8125rem/1 var(--font-body);
+  cursor: pointer;
+  user-select: none;
+  -webkit-user-select: none;
+  box-shadow:
+    0 -1px 0 0 var(--frame),
+    0 1px 0 0 var(--frame),
+    -1px 0 0 0 var(--frame),
+    1px 0 0 0 var(--frame);
+  transition: transform 140ms var(--ease-out), background-color 150ms ease;
+}
+.realm-toggle img {
+  width: 12px;
+  height: 12px;
+}
+.realm-toggle:active {
+  transform: scale(0.97);
+}
+@media (hover: hover) and (pointer: fine) {
+  .realm-toggle:hover {
+    background: rgba(255, 255, 255, 0.1);
+  }
+}
+
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, #0b1730 0%, #18304f 55%, #3a5c88 100%);
+  opacity: 0;
+  pointer-events: none;
+}
+.scene-storybook {
+  opacity: 0;
+}
+
+[data-realm="storybook"] .hero::before,
+[data-realm="storybook"] .scene-storybook {
+  opacity: 1;
+}
+[data-realm="storybook"] .scene-night,
+[data-realm="storybook"] .moon {
+  opacity: 0;
+}
+[data-realm="storybook"] .star {
+  opacity: calc(var(--o, 0.6) * 0.5);
+}
+
+.realm-ready .hero::before,
+.realm-ready .scene,
+.realm-ready .moon {
+  transition: opacity 450ms ease;
+}
+
+.flake {
+  position: absolute;
+  top: -4px;
+  width: 2px;
+  height: 2px;
+  background: #eef3fb;
+  opacity: 0;
+  display: none;
+}
+[data-realm="storybook"] .flake {
+  display: block;
+  opacity: var(--o);
+  animation: fall var(--d, 14s) linear var(--delay, 0s) infinite;
+}
+@keyframes fall {
+  to {
+    transform: translate3d(var(--drift, 0), 105vh, 0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [data-realm="storybook"] .flake {
+    animation: none;
+    transform: translateY(var(--y, 0));
+  }
+}
