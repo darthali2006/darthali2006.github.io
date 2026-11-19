@@ -205,9 +205,23 @@ button {
 }
 
 @media (max-width: 640px) {
-  .nav nav a:not([href="#contact"]) {
+  .nav nav a:not([href="#contact"]):not(.world-switch) {
     display: none;
   }
+}
+.nav nav a.world-switch {
+  margin-left: 14px;
+  padding: 0;
+  color: #b9b8d2;
+}
+@media (max-width: 640px) {
+  .nav-mark { white-space: nowrap; }
+  .nav nav a.world-switch { margin-left: 10px; }
+  .nav .ws-label { display: none; }
+}
+/* The hero already has the email and LinkedIn buttons, so Contact can go first. */
+@media (max-width: 420px) {
+  .nav nav a[href="#contact"] { display: none; }
 }
 
 /* ------------------------------------------------------------ hero */
