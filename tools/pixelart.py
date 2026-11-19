@@ -624,6 +624,28 @@ ICONS = {
         ".kk.........",
     ],
     # realm toggle
+    # résumé / Disney switch: night and day
+    "sun": [
+        "....a....",
+        ".a..a..a.",
+        "..aAAAa..",
+        "..AYYYA..",
+        "aaAYYYAaa",
+        "..AYYYA..",
+        "..aAAAa..",
+        ".a..a..a.",
+        "....a....",
+    ],
+    "moon-small": [
+        "..www...",
+        ".wwp....",
+        "wwp.....",
+        "wwp.....",
+        "wwp.....",
+        "wwwp....",
+        ".wwwwww.",
+        "..wwww..",
+    ],
     "ring": [
         "..kkkk..",
         ".kAAAak.",

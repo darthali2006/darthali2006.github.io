@@ -19,8 +19,10 @@
   <link rel="preload" href="assets/fonts/inter-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="assets/fonts/pixelify-sans-latin-700-normal.woff2" as="font" type="font/woff2" crossorigin>
   <script src="assets/realm.js?v=6"></script>
-  <link rel="stylesheet" href="styles.css?v=6">
-  <script src="script.js?v=6" defer></script>
+  <link rel="stylesheet" href="styles.css?v=7">
+  <link rel="stylesheet" href="assets/world-switch.css?v=1">
+  <script src="script.js?v=7" defer></script>
+  <script src="assets/world-switch.js?v=1" defer></script>
 </head>
 <body>
   <a class="skip" href="#main">Skip to content</a>
@@ -39,6 +41,10 @@
         <img src="assets/pixel/ring.svg" alt="" width="8" height="8">
         <span class="realm-label">Storybook</span>
       </button>
+      <a class="world-switch" href="disney/" aria-label="Switch to Disney Cruise Trivia, a side project">
+        <span class="ws-track" aria-hidden="true"><img class="ws-moon" src="assets/pixel/moon-small.svg" alt="" width="10" height="10"><img class="ws-sun" src="assets/pixel/sun.svg" alt="" width="10" height="10"><span class="ws-knob"></span></span>
+        <span class="ws-label">Disney</span>
+      </a>
     </nav>
   </header>
 
